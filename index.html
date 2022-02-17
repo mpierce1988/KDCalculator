@@ -9,38 +9,95 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap components -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <!-- End Bootstrap components-->
     <script src="app.js"></script>
     <title>KDR Calculator</title>
   </head>
-  <body>
-    <div id="wrapper">
-      <h1>KDR Calculator</h1>
-      <div id="game-name">
-        <script>
-          dw(`<h2>${myGame}</h2>`);
-        </script>
+  <body class="bg-secondary">
+    <div class="container-sm text-center mt-5" id="panel">
+      <div class="row justify-content-center w-auto">
+        <div class="col-sm-8 col-md-6 col-lg-4 p-5 bg-light">
+          <h1>KDR Calculator</h1>
+          <div id="game-name">
+            <script>
+              dw(`<h2 class="text-muted">${myGame}</h2>`);
+            </script>
+          </div>
+
+          <script>
+            if (stats.length == 0) {
+              dw(
+                `No records have been entered. Please reload the page and try again.`
+              );
+            } else {
+              dw(`<h3>Rounds Summary</h3>`);
+
+              // dw(`<ul>`);
+              // let roundCount = 1;
+              // stats.forEach((element) => {
+              //   dw(`<li>${roundCount}. ${element} KDR</li>`);
+              //   roundCount++;
+              // });
+              // dw(`</ul>`);
+
+              dw(`<div class="accordion" id="accordionExample">`);
+              let roundCount = 1;
+              stats.forEach((element) => {
+                dw(`
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading${roundCount}">
+                      <button
+                        class="accordion-button"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapse${roundCount}"
+                        aria-expanded="true"
+                        aria-controls="collapse${roundCount}">
+                          Round ${roundCount}
+                      </button>
+                    </h2>
+                    <div
+                      id="collapse${roundCount}"
+                      class="accordion-collapse collapse"
+                      aria-labelledby="heading${roundCount}"
+                      data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          ${element.toFixed(2)} KDR
+                        </div>
+                    </div>
+                  </div>
+                `);
+                roundCount++;
+              });
+              dw(`</div>`);
+
+              dw(`<h2>Average KDR:</h2>`);
+              dw(`<p>${avgKDR.toFixed(2)}</p>`);
+            }
+          </script>
+          <button
+            onclick="window.location = window.location.href"
+            type="button"
+            class="btn btn-primary"
+          >
+            Start Again
+          </button>
+        </div>
       </div>
-      <script>
-        if (stats.length == 0) {
-          dw(
-            `No records have been entered. Please reload the page and try again.`
-          );
-        } else {
-          dw(`<h3>Rounds Summary</h3>`);
-          dw(`<ul>`);
-          let roundCount = 1;
-          stats.forEach((element) => {
-            dw(`<li>${roundCount}. ${element} KDR</li>`);
-            roundCount++;
-          });
-          dw(`</ul>`);
-          dw(`<h2>Average KDR:</h2>`);
-          dw(`<p>${avgKDR.toFixed(2)}</p>`);
-        }
-      </script>
-      <button onclick="window.location = window.location.href">
-        Start Again
-      </button>
     </div>
+
+    <!-- Bootstrap -->
   </body>
 </html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+    NAME: Michael Pierce
+    DATE: Feb 17, 2022
+    PURPOSE: Kill Death Ratio Calculator
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="app.js"></script>
+    <title>KDR Calculator</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <h1>KDR Calculator</h1>
+      <div id="game-name">
+        <script>
+          dw(`<h2>${myGame}</h2>`);
+        </script>
+      </div>
+      <script>
+        if (stats.length == 0) {
+          dw(
+            `No records have been entered. Please reload the page and try again.`
+          );
+        } else {
+          dw(`<h3>Rounds Summary</h3>`);
+          dw(`<ul>`);
+          let roundCount = 1;
+          stats.forEach((element) => {
+            dw(`<li>${roundCount}. ${element} KDR</li>`);
+            roundCount++;
+          });
+          dw(`</ul>`);
+          dw(`<h2>Average KDR:</h2>`);
+          dw(`<p>${avgKDR.toFixed(2)}</p>`);
+        }
+      </script>
+      <button onclick="window.location = window.location.href">
+        Start Again
+      </button>
+    </div>
+  </body>
+</html>

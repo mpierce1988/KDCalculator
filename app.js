@@ -9,7 +9,7 @@
 let myGame = '';
 let stats = [];
 let avgKDR = 0;
-let add = new String();
+let add = 'y';
 
 function calculateKDR(kills, deaths) {
   if (deaths <= 0) {
@@ -22,7 +22,7 @@ function calculateKDR(kills, deaths) {
 let calculateAvgKDR = function () {
   let totalKDR = 0;
   stats.forEach((element) => {
-    totalKDR += stats[element];
+    totalKDR += element;
   });
 
   return totalKDR / stats.length;
@@ -43,3 +43,16 @@ let validateKDRInputs = (kills, deaths) => {
 let dw = (content) => {
   document.writeln(content);
 };
+
+myGame = prompt('Enter the FPS Game: ', '');
+
+while (add == 'y') {
+  let kills = promptForNumber('Enter kills for the round:');
+  let deaths = promptForNumber('Enter deaths for this round:');
+  if (validateKDRInputs(kills, deaths)) {
+    stats[stats.length] = calculateKDR(kills, deaths);
+  }
+  add = prompt('Add another round?', 'y');
+}
+
+avgKDR = calculateAvgKDR();

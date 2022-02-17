@@ -25,12 +25,14 @@
     <script src="app.js"></script>
     <title>KDR Calculator</title>
   </head>
-  <body class="bg-secondary">
-    <div class="container-sm text-center mt-5" id="panel">
+  <body class="bg-dark">
+    <div class="container-xl text-center text-light mt-5" id="panel">
       <div class="row justify-content-center w-auto">
-        <div class="col-sm-8 col-md-6 col-lg-4 p-5 bg-light">
-          <h1>KDR Calculator</h1>
-          <div id="game-name">
+        <div
+          class="col-lg-8 col-xl-7 col-xxl-6 p-5 bg-dark bg-gradient shadow-lg border border-light rounded"
+        >
+          <h1 class="mb-3">KDR Calculator</h1>
+          <div id="game-name" class="mb-3">
             <script>
               dw(`<h2 class="text-muted">${myGame}</h2>`);
             </script>
@@ -42,7 +44,7 @@
                 `No records have been entered. Please reload the page and try again.`
               );
             } else {
-              dw(`<h3>Rounds Summary</h3>`);
+              dw(`<h3 class="mb-3">Rounds Summary</h3>`);
 
               // dw(`<ul>`);
               // let roundCount = 1;
@@ -52,7 +54,7 @@
               // });
               // dw(`</ul>`);
 
-              dw(`<div class="accordion" id="accordionExample">`);
+              dw(`<div class="accordion mb-3" id="accordionExample">`);
               let roundCount = 1;
               stats.forEach((element) => {
                 dw(`
@@ -70,7 +72,7 @@
                     </h2>
                     <div
                       id="collapse${roundCount}"
-                      class="accordion-collapse collapse"
+                      class="accordion-collapse collapse text-dark"
                       aria-labelledby="heading${roundCount}"
                       data-bs-parent="#accordionExample">
                         <div class="accordion-body">
@@ -84,7 +86,7 @@
               dw(`</div>`);
 
               dw(`<h2>Average KDR:</h2>`);
-              dw(`<p>${avgKDR.toFixed(2)}</p>`);
+              dw(`<p class="mb-3">${avgKDR.toFixed(2)}</p>`);
             }
           </script>
           <button
